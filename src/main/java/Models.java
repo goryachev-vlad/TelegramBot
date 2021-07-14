@@ -1,6 +1,7 @@
 public class Models {
     private String name,main,icon;
-    private Double team, humidity;
+    private Double temp, humidity;
+
 
     public String getName() {
         return name;
@@ -26,12 +27,12 @@ public class Models {
         this.icon = icon;
     }
 
-    public Double getTeam() {
-        return team;
+    public Double getTemp() {
+        return temp;
     }
 
-    public void setTeam(Double team) {
-        this.team = team;
+    public void setTemp(Double temp) {
+        this.temp = temp;
     }
 
     public Double getHumidity() {

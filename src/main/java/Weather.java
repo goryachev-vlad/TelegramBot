@@ -1,3 +1,6 @@
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -12,7 +15,24 @@ public class Weather {
         while (in.hasNext()) {
             result += in.nextLine();
         }
-        return result;
-        
+        JSONObject object = new JSONObject(result);
+        model.setName(object.getString("name"));
+
+        JSONObject main = object.getJSONObject("main");
+        model.setTemp(main.getDouble("temp"));
+        model.setHumidity(main.getDouble("humidity"));
+
+        JSONArray getArray = object.getJSONArray("weather");
+        for (int i =0;i<getArray.length();i++){
+            JSONObject odj = getArray.getJSONObject(i);
+            model.setIcon((String) odj.get("icon"));
+            model.setMain((String) odj.get("main"));
+
+        }return "City: " + model.getName()+"\n"+
+                "temperature: "+model.getTemp()+"C"+"\n"+
+                "Humidity: "+model.getHumidity()+"%"+"\n"+
+                "https://openweathermap.org/img/w/"+model.getIcon()+".png";
+
+
     }
 }
